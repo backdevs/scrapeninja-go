@@ -22,9 +22,10 @@ var (
 
 type ScrapeRequest struct {
 	Url     string            `json:"url"`
-	Proxy   string            `json:"geo"`
-	Headers map[string]string `json:"headers"`
 	Method  string            `json:"method"`
+	Headers map[string]string `json:"headers,omitempty"`
+	Data    string            `json:"body,omitempty"`
+	Proxy   string            `json:"geo,omitempty"`
 }
 
 func (r *ScrapeRequest) MarshalJSON() ([]byte, error) {
