@@ -26,21 +26,36 @@ import (
 )
 
 type Post struct {
-	UserID int    `json:"userId"`
-	ID     int    `json:"id"`
-	Title  string `json:"title"`
-	Body   string `json:"body"`
+	ID        string   `json:"id"`
+	Title     string   `json:"title"`
+	Body      string   `json:"body"`
+	UserID    int      `json:"userId"`
+	Tags      []string `json:"tags"`
+	Reactions int      `json:"reactions"`
 }
 
 func main() {
 	ninja := scrapeninja.New("Your-API-Key")
+
+	postJson, err := json.Marshal(&Post{
+		ID:     "1",
+		UserID: 12,
+		Title:  "ScrapeNinja Web scraper Go API Client",
+		Body:   "Lorem ipsum etc.",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	response, err := ninja.Scrape(&scrapeninja.ScrapeRequest{
-		Url:   "https://jsonplaceholder.typicode.com/posts/1",
-		Proxy: "us",
+		Url:    "https://dummyjson.com/posts/1",
+		Method: http.MethodPut,
+		Proxy:  scrapeninja.ProxyEU,
+		Data:   string(postJson),
 		Headers: map[string]string{
-			"Accept": "application/json",
+			"Content-Type": "application/json",
+			"Accept":       "application/json",
 		},
-		Method: http.MethodGet,
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -54,4 +69,5 @@ func main() {
 
 	fmt.Println(post.Title)
 }
+
 ```
