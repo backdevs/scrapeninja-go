@@ -20,6 +20,16 @@ var (
 	Timeout      time.Duration = 30
 )
 
+const (
+	ProxyDefault string = "default"
+	ProxyUS      string = "us"
+	ProxyEU      string = "eu"
+	ProxyEU4G    string = "4g-eu"
+	ProxyDE      string = "de"
+	ProxyFR      string = "fr"
+	ProxyBR      string = "br"
+)
+
 type ScrapeRequest struct {
 	Url     string            `json:"url"`
 	Method  string            `json:"method"`
