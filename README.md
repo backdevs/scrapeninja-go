@@ -1,4 +1,4 @@
-# [ScrapeNinja](https://scrapeninja.net) Web scraper Go API Client
+# [ScrapeNinja](https://scrapeninja.net) Go API Client
 
 A slim Go client for interacting with the ScrapeNinja API
 
